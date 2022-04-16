@@ -1,0 +1,18 @@
+
+
+#ifndef BIBLIOTECA_H_
+#define BIBLIOTECA_H_
+
+
+/// @brief
+///
+/// @param pNumeroIngresado
+/// @param mensaje
+/// @param mensajeError
+/// @param maximo
+/// @param minimo
+/// @param reintentos
+/// @return
+int getInt(int* pNumeroIngresado, char * mensaje, char * mensajeError, int maximo, int minimo, int reintentos);
+
+#endif /* BIBLIOTECA_H_ */

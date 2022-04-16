@@ -1,0 +1,40 @@
+
+
+#ifndef BIBLIOTECA_H_
+#define BIBLIOTECA_H_
+
+
+/// @brief
+///
+/// @param pNumeroIngresado
+/// @param mensaje
+/// @param mensajeError
+/// @param maximo
+/// @param minimo
+/// @param reintentos
+/// @return
+int getInt(int* pNumeroIngresado, char * mensaje, char * mensajeError, int maximo, int minimo, int reintentos);
+
+/// @brief
+///
+/// @param pCharIngresado
+/// @param mensaje
+/// @param mensajeError
+/// @param maximo
+/// @param minimo
+/// @param reintentos
+/// @return
+int getChar(char* pCharIngresado, char * mensaje, char * mensajeError, char maximo, char minimo, int reintentos);
+
+/// @brief
+///
+/// @param pNumeroIngresado
+/// @param mensaje
+/// @param mensajeError
+/// @param maximo
+/// @param minimo
+/// @param reintentos
+/// @return
+int getFloat(float* pNumeroIngresado, char * mensaje, char * mensajeError, int maximo, int minimo, int reintentos);
+
+#endif /* BIBLIOTECA_H_ */

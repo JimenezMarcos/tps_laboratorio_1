@@ -1,0 +1,329 @@
+/*
+ Alumno: Jimenez Marcos
+ Curso: 1°E
+
+
+
+Una agencia de viaje necesita calcular costos para sus vuelos de Latam y Aerolíneas Argentinas
+para ofrecerlos a sus clientes.
+Se deberá ingresar por cada vuelo los km totales y el precio total del mismo.
+El objetivo de la aplicación es mostrar las diferentes opciones de pagos a sus clientes.
+Para ello el programa iniciará y contará con un menú de opciones:
+1. Ingresar Kilómetros: ( km=x)
+2. Ingresar Precio de Vuelos: (Aerolíneas=y, Latam=z)
+- Precio vuelo Aerolíneas:
+- Precio vuelo Latam:
+3. Calcular todos los costos:
+a) Tarjeta de débito (descuento 10%)
+b) Tarjeta de crédito (interés 25%)
+c) Bitcoin (1BTC -> 4606954.55 Pesos Argentinos)
+d) Mostrar precio por km (precio unitario)
+e) Mostrar diferencia de precio ingresada (Latam - Aerolíneas)
+4. Informar Resultados
+“Latam:
+a) Precio con tarjeta de débito: r
+b) Precio con tarjeta de crédito: r
+c) Precio pagando con bitcoin : r
+d) Precio unitario: r
+Aerolíneas:
+a) Precio con tarjeta de débito: r
+b) Precio con tarjeta de crédito: r
+c) Precio pagando con bitcoin : r
+d) Precio unitario: r
+La diferencia de precio es : r “
+5. Carga forzada de datos
+6. Salir
+
+*/
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "biblioteca.h"
+
+#define TRUE 0
+#define FALSE -1
+
+
+int main(void) {
+	setbuf(stdout, NULL);
+
+	float kilometrosIngresados;
+	float precioAerolineas;
+	float precioLatam;
+	int estadoOpcionUno;
+	int estadoOpcionDos;
+	int estadoOpcionTres;
+	int estadoOpcionCinco;
+	int opcion;
+	char respuesta;
+	float precioDebitoLatam;
+	float precioCreditoLatam;
+	float precioBitcoinLatam;
+	float precioUnitarioLatam;
+	float precioDebitoAerolineas;
+	float precioCreditoAerolineas;
+	float precioBitcoinAerolineas;
+	float precioUnitarioAerolineas;
+	float diferenciaPrecio;
+
+
+
+	estadoOpcionUno = FALSE;
+	estadoOpcionDos = FALSE;
+	estadoOpcionTres = FALSE;
+	estadoOpcionCinco = FALSE;
+
+	do
+	{
+		if(estadoOpcionUno == FALSE && estadoOpcionDos == FALSE)
+		{
+			printf("----------MENU----------\n");
+			printf("1. Ingresar Kilometros: (km = x)\n");
+			printf("2. Ingresar precio de vuelos (Aerolineas = y, Latam = z)\n");
+			printf("3. Calcular costos.\n");
+			printf("4. Informar resultados.\n");
+			printf("5. Carga forzada de datos.\n");
+			printf("6. Salir\n");
+			printf("------------------------\n");
+
+			if(getInt(&opcion, "Ingrese una opcion (1-6): ", "No es una opcion valida. ", 6, 1, 2))
+			{
+				printf("Ya utilizo todos sus intentos, volviendo al menu.\n");
+				system("pause");
+			}
+
+
+		}
+		else
+		{
+			if(estadoOpcionUno == TRUE && estadoOpcionDos == FALSE)
+			{
+				printf("----------MENU----------\n");
+				printf("1. Ingresar Kilometros: (km = %.2f)\n", kilometrosIngresados);
+				printf("2. Ingresar precio de vuelos (Aerolineas = y, Latam = z)\n");
+				printf("3. Calcular costos.\n");
+				printf("4. Informar resultados.\n");
+				printf("5. Carga forzada de datos.\n");
+				printf("6. Salir\n");
+				printf("------------------------\n");
+
+				if(getInt(&opcion, "Ingrese una opcion (1-6): ", "No es una opcion valida. ", 6, 1, 2))
+				{
+					printf("Ya utilizo todos sus intentos, volviendo al menu.\n");
+					system("pause");
+				}
+			}
+			else
+			{
+				if(estadoOpcionUno == FALSE && estadoOpcionDos == TRUE)
+				{
+					printf("----------MENU----------\n");
+					printf("1. Ingresar Kilometros: (km = x)\n");
+					printf("2. Ingresar precio de vuelos (Aerolineas = %.2f, Latam = %.2f)\n", precioAerolineas, precioLatam);
+					printf("3. Calcular costos.\n");
+					printf("4. Informar resultados.\n");
+					printf("5. Carga forzada de datos.\n");
+					printf("6. Salir\n");
+					printf("------------------------\n");
+
+					if(getInt(&opcion, "Ingrese una opcion (1-6): ", "No es una opcion valida. ", 6, 1, 2))
+					{
+						printf("Ya utilizo todos sus intentos, volviendo al menu.\n");
+						system("pause");
+					}
+				}
+				else
+				{
+					printf("----------MENU----------\n");
+					printf("1. Ingresar Kilometros: (km = %.2f)\n", kilometrosIngresados);
+					printf("2. Ingresar precio de vuelos (Aerolineas = %.2f, Latam = %.2f)\n", precioAerolineas, precioLatam);
+					printf("3. Calcular costos.\n");
+					printf("4. Informar resultados.\n");
+					printf("5. Carga forzada de datos.\n");
+					printf("6. Salir\n");
+					printf("------------------------\n");
+
+					if(getInt(&opcion, "Ingrese una opcion (1-6): ", "No es una opcion valida. ", 6, 1, 2))
+					{
+						printf("Ya utilizo todos sus intentos, volviendo al menu.\n");
+						system("pause");
+					}
+				}
+			}
+		}
+
+
+		switch(opcion)
+		{
+			case 1:
+
+				if(estadoOpcionUno == FALSE)
+				{
+					if(getFloat(&kilometrosIngresados, "Ingrese los kilometros: ", "No es una opcion valida.", 10000, 0, 2))
+					{
+						printf("Ya utilizo todos sus intentos, volviendo al menu.\n");
+						system("pause");
+					}
+					else
+					{
+						estadoOpcionUno = TRUE;
+						printf("Los kilometros han sido cargados correctamente.\n");
+						system("pause");
+					}
+				}
+				else
+				{
+					if(getChar(&respuesta, "Usted va a sobreescribir los kilometros cargados anteriormente, desea continuar?(s/n): ", "No es una opcion valida. ", 'z', 'a', 3))
+					{
+						printf("Ya utilizo todos sus intentos, volviendo al menu.\n");
+						system("pause");
+					}
+					else if(respuesta == 's')
+					{
+						printf("Vuelva a ingresar para cargar los datos nuevamente.\n");
+						estadoOpcionUno = FALSE;
+					}
+					else
+					{
+						break;
+					}
+				}
+
+
+
+			break;
+			case 2:
+
+				if(estadoOpcionDos == FALSE)
+				{
+					if(getFloat(&precioAerolineas, "Ingrese precio del vuelo de Aerolineas: ", "No es una opcion valida.", 1000000, 0, 2))
+					{
+						printf("Ya utilizo todos sus intentos, volviendo al menu.\n");
+						system("pause");
+					}
+					else if(getFloat(&precioLatam, "Ingrese precio del vuelo de Latam: ", "No es una opcion valida.", 1000000, 0, 2))
+					{
+						printf("Ya utilizo todos sus intentos, volviendo al menu.\n");
+						system("pause");
+					}
+					else
+					{
+						printf("Los precios fueron cargados correctamente.\n");
+						system("pause");
+						estadoOpcionDos = TRUE;
+					}
+
+				}
+				else
+				{
+					if(getChar(&respuesta, "Usted va a sobreescribir los precios cargados anteriormente, desea continuar?(s/n): ", "No es una opcion valida. ", 'z', 'a', 3))
+					{
+						printf("Ya utilizo todos sus intentos, volviendo al menu.\n");
+						system("pause");
+					}
+					else if(respuesta == 's')
+					{
+						printf("Vuelva a ingresar para cargar los datos nuevamente.\n");
+						system("pause");
+						estadoOpcionDos = FALSE;
+					}
+					else
+					{
+						break;
+					}
+				}
+
+			break;
+			case 3:
+					if(estadoOpcionUno == FALSE)
+					{
+						printf("Para calcular los costos debe ingresar los kilometros.\n");
+						system("pause");
+					}
+					else if(estadoOpcionDos == FALSE)
+					{
+						printf("Para calcular los costos debe ingresar los precios de los vuelos.\n");
+						system("pause");
+					}
+					else
+					{
+						CalcularDescuento(precioAerolineas, &precioDebitoAerolineas, 10, "Ha ocurrido un error calculando el descuento del pago con tarjeta de debito de Aerolineas.\n");
+						CalcularDescuento(precioLatam, &precioDebitoLatam, 10, "Ha ocurrido un error calculando el descuento del pago con tarjeta de debito de Latam.\n");
+
+						CalcularInteres(precioAerolineas, &precioCreditoAerolineas, 25, "Ha ocurrido un error calculando el pago con tarjeta de credito de Aerolineas.\n");
+						CalcularInteres(precioLatam, &precioCreditoLatam, 25, "Ha ocurrido un error calculando el pago con tarjeta de credito de Latam.\n");
+
+						ConvertirABitcoin(precioAerolineas, &precioBitcoinAerolineas, 4612125.46, "Ha ocurrido un error convirtiendo el importe de Aerolineas a bitcoin");
+						ConvertirABitcoin(precioLatam, &precioBitcoinLatam, 4612125.46, "Ha ocurrido un error convirtiendo el importe de Latam a bitcoin");
+
+						dividirFlotantes(precioAerolineas, kilometrosIngresados, &precioUnitarioAerolineas);
+						dividirFlotantes(precioLatam, kilometrosIngresados, &precioUnitarioLatam);
+
+						restarNumeros(precioLatam, precioAerolineas, &diferenciaPrecio);
+
+					}
+
+
+					//Calcular descuento/ calcular interes/ convertir a bitcoin/ calcular precio por km/ Mostrar dif precio Latam - aerolineas
+			break;
+			case 4:
+				if(estadoOpcionUno == FALSE)
+				{
+					printf("Para calcular los costos debe ingresar los kilometros.\n");
+					system("pause");
+				}
+				else if(estadoOpcionDos == FALSE)
+				{
+					printf("Para calcular los costos debe ingresar los precios de los vuelos.\n");
+					system("pause");
+				}
+				else if(estadoOpcionTres == FALSE || estadoOpcionCinco == FALSE)
+				{
+					printf("No se pueden mostrar resultados que no fueron calculados");
+					system("pause");
+				}
+				else
+				{
+					printf("Latam:\n");
+					printf("A) Precio con tarjeta de debito: %.2f.\n", precioDebitoLatam);
+					printf("B) Precio con tarjeta de credito: %.2f.\n", precioCreditoLatam);
+					printf("C) Precio pagando con bitcon: %.4f\n", precioBitcoinLatam);
+					printf("D) Precio unitario: %.2f\n\n", precioUnitarioLatam);
+					printf("Aerolineas:\n");
+					printf("A) Precio con tarjeta de debito: %.2f.\n", precioDebitoAerolineas);
+					printf("B) Precio con tarjeta de credito: %.2f.\n", precioCreditoAerolineas);
+					printf("C) Precio pagando con bitcon: %.4f\n", precioBitcoinAerolineas);
+					printf("D) Precio unitario: %.2f\n\n", precioUnitarioAerolineas);
+					printf("La diferencia de precio es %.2f\n", diferenciaPrecio);
+				}
+
+
+
+			break;
+			case 5:
+
+					//Carga forzada con KM: 7090 / Aerolineas argentinas: $162965 / Latam : 159339
+			break;
+			case 6:
+			break;
+
+		}
+
+
+
+	system("cls");
+
+	}while(opcion != 6);
+
+
+	printf("\n_______________________________________________\n\n");
+	printf("Gracias por usar MarcosApp!!!\nCopyright © 2022 Marcos Inc. all rights reserved.\n");
+	printf("\n_______________________________________________\n\n");
+
+	system("pause");
+
+
+
+	return EXIT_SUCCESS;
+}
