@@ -80,11 +80,11 @@ int ConvertirABitcoin (float precioInicial, float * pPrecioConvertido, float val
 /// @return 0 si la implementacion fue un exito, -1 si hubieron errores
 int sumarNumeros (float primerNumero, float segundoNumero, float * pResultado);
 
-/// @brief Funcion que permite restar dos numeros flotantes
+/// @brief
 ///
-/// @param primerNumero primer operando
-/// @param segundoNumero segundo operando
-/// @param pResultado puntero a la variable que contendra el resultado
+/// @param primerNumero
+/// @param segundoNumero
+/// @param pResultado
 /// @return 0 si la implementacion fue un exito, -1 si hubieron errores
 int restarNumeros (float primerNumero, float segundoNumero, float * pResultado);
 

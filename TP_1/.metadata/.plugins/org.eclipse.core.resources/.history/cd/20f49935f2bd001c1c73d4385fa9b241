@@ -37,55 +37,55 @@ int getChar(char* pCharIngresado, char * mensaje, char * mensajeError, char maxi
 /// @return 0 si la implementacion fue un exito, -1 si hubieron errores
 int getFloat(float* pNumeroIngresado, char * mensaje, char * mensajeError, int maximo, int minimo, int reintentos);
 
-/// @brief Funcion que calcula un precio descontando un porcentaje "x" del mismo
+/// @brief
 ///
-/// @param precioNeto precio que ingresa sin descuento
-/// @param precioConDescuento puntero a la variable que contendra el precio con descuento
-/// @param porcentajeDescuento porcentaje que se descontara
-/// @param mensajeError texto que se muestra al ingresar un dato invalido
-/// @return 0 si la implementacion fue un exito, -1 si hubieron errores
+/// @param precioNeto
+/// @param precioConDescuento
+/// @param porcentajeDescuento
+/// @param mensajeError
+/// @return
 int CalcularDescuento (float precioNeto, float * precioConDescuento, int porcentajeDescuento, char* mensajeError);
 
-/// @brief Funcion que me permite calcular el interes de un valor
+/// @brief
 ///
-/// @param precioNeto precio que ingresa sin interes
-/// @param precioConDescuento puntero a la variable que contendra el precio con interes
-/// @param porcentajeDescuento porcentaje que se recargara
-/// @param mensajeError texto que se muestra al ingresar un dato invalido
-/// @return 0 si la implementacion fue un exito, -1 si hubieron errores
+/// @param precioNeto
+/// @param precioConInteres
+/// @param porcentajeInteres
+/// @param mensajeError
+/// @return
 int CalcularInteres (float precioNeto, float * precioConInteres, int porcentajeInteres, char* mensajeError);
 
-/// @brief Funcion que permite ingresar dos numeros flotante y dividirlos.
+/// @brief
 ///
-/// @param primerNumero Primer operando
-/// @param segundoNumero Segundo operando
-/// @param pResultado puntero a la variable que contendra el resultado
-/// @return 0 si la implementacion fue un exito, -1 si hubieron errores
+/// @param primerNumero
+/// @param segundoNumero
+/// @param pResultado
+/// @return
 int dividirFlotantes (float primerNumero, float segundoNumero, float* pResultado);
 
-/// @brief Funcion que permite calcular al valor Bitcoin un precio determinado
+/// @brief
 ///
-/// @param precioInicial Precio con la moneda ingresada
-/// @param pPrecioConvertido Puntero apunta a la variable que contendra el precio convertido
-/// @param valorBitcoin Valor por el cual se cotizara el precio ingresado
-/// @param mensajeError texto que se muestra al ingresar un dato invalido
-/// @return 0 si la implementacion fue un exito, -1 si hubieron errores
+/// @param precioInicial
+/// @param pPrecioConvertido
+/// @param valorBitcoin
+/// @param mensajeError
+/// @return
 int ConvertirABitcoin (float precioInicial, float * pPrecioConvertido, float valorBitcoin, char * mensajeError);
 
-/// @brief Funcion que permite sumar dos numeros flotantes
+/// @brief
 ///
-/// @param primerNumero primer operando
-/// @param segundoNumero segundo operando
-/// @param pResultado puntero a la variable que contendra el resultado
-/// @return 0 si la implementacion fue un exito, -1 si hubieron errores
+/// @param primerNumero
+/// @param segundoNumero
+/// @param pResultado
+/// @return
 int sumarNumeros (float primerNumero, float segundoNumero, float * pResultado);
 
-/// @brief Funcion que permite restar dos numeros flotantes
+/// @brief
 ///
-/// @param primerNumero primer operando
-/// @param segundoNumero segundo operando
-/// @param pResultado puntero a la variable que contendra el resultado
-/// @return 0 si la implementacion fue un exito, -1 si hubieron errores
+/// @param primerNumero
+/// @param segundoNumero
+/// @param pResultado
+/// @return
 int restarNumeros (float primerNumero, float segundoNumero, float * pResultado);
 
 #endif /* BIBLIOTECA_H_ */

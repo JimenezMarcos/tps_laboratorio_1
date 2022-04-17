@@ -55,7 +55,7 @@ int CalcularDescuento (float precioNeto, float * precioConDescuento, int porcent
 /// @return 0 si la implementacion fue un exito, -1 si hubieron errores
 int CalcularInteres (float precioNeto, float * precioConInteres, int porcentajeInteres, char* mensajeError);
 
-/// @brief Funcion que permite ingresar dos numeros flotante y dividirlos.
+/// @brief Funcion que permite ingresar dos numeros y dividirlos.
 ///
 /// @param primerNumero Primer operando
 /// @param segundoNumero Segundo operando
@@ -72,19 +72,19 @@ int dividirFlotantes (float primerNumero, float segundoNumero, float* pResultado
 /// @return 0 si la implementacion fue un exito, -1 si hubieron errores
 int ConvertirABitcoin (float precioInicial, float * pPrecioConvertido, float valorBitcoin, char * mensajeError);
 
-/// @brief Funcion que permite sumar dos numeros flotantes
+/// @brief
 ///
-/// @param primerNumero primer operando
-/// @param segundoNumero segundo operando
-/// @param pResultado puntero a la variable que contendra el resultado
+/// @param primerNumero
+/// @param segundoNumero
+/// @param pResultado
 /// @return 0 si la implementacion fue un exito, -1 si hubieron errores
 int sumarNumeros (float primerNumero, float segundoNumero, float * pResultado);
 
-/// @brief Funcion que permite restar dos numeros flotantes
+/// @brief
 ///
-/// @param primerNumero primer operando
-/// @param segundoNumero segundo operando
-/// @param pResultado puntero a la variable que contendra el resultado
+/// @param primerNumero
+/// @param segundoNumero
+/// @param pResultado
 /// @return 0 si la implementacion fue un exito, -1 si hubieron errores
 int restarNumeros (float primerNumero, float segundoNumero, float * pResultado);
 

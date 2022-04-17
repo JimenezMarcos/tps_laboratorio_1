@@ -1,0 +1,91 @@
+
+
+#ifndef BIBLIOTECA_H_
+#define BIBLIOTECA_H_
+
+
+/// @brief Funcion que me permite pedir un numero entero
+///
+/// @param pNumeroIngresado puntero a la variable que contendra el numero pedido
+/// @param mensaje Texto que se muestra al pedir el numero
+/// @param mensajeError Texto que se muestra al ingresar un dato invalido
+/// @param maximo Valor maximo que puede tener el numero
+/// @param minimo Valor minimo que puede tener el numero
+/// @param reintentos Cantidad de veces que el usuario puede ingresar un numero
+/// @return 0 si la implementacion fue un exito, -1 si hubieron errores
+int getInt(int* pNumeroIngresado, char * mensaje, char * mensajeError, int maximo, int minimo, int reintentos);
+
+/// @brief Funcion que me permite pedir un caracter
+///
+/// @param pCharIngresado puntero a la variable que contendra el caracter
+/// @param mensaje Texto que se muestra al pedir el caracter
+/// @param mensajeError Texto que se muestra al ingresar un dato invalido
+/// @param maximo Valor maximo en la tabla ascii que puede tener el caracter
+/// @param minimo Valot minimo en la tabla ascii que puede tener el caracter
+/// @param reintentos Cantidad de errores permitidos al ingresar un caracter
+/// @return
+int getChar(char* pCharIngresado, char * mensaje, char * mensajeError, char maximo, char minimo, int reintentos);
+
+/// @brief
+///
+/// @param pNumeroIngresado
+/// @param mensaje
+/// @param mensajeError
+/// @param maximo
+/// @param minimo
+/// @param reintentos
+/// @return
+int getFloat(float* pNumeroIngresado, char * mensaje, char * mensajeError, int maximo, int minimo, int reintentos);
+
+/// @brief
+///
+/// @param precioNeto
+/// @param precioConDescuento
+/// @param porcentajeDescuento
+/// @param mensajeError
+/// @return
+int CalcularDescuento (float precioNeto, float * precioConDescuento, int porcentajeDescuento, char* mensajeError);
+
+/// @brief
+///
+/// @param precioNeto
+/// @param precioConInteres
+/// @param porcentajeInteres
+/// @param mensajeError
+/// @return
+int CalcularInteres (float precioNeto, float * precioConInteres, int porcentajeInteres, char* mensajeError);
+
+/// @brief
+///
+/// @param primerNumero
+/// @param segundoNumero
+/// @param pResultado
+/// @return
+int dividirFlotantes (float primerNumero, float segundoNumero, float* pResultado);
+
+/// @brief
+///
+/// @param precioInicial
+/// @param pPrecioConvertido
+/// @param valorBitcoin
+/// @param mensajeError
+/// @return
+int ConvertirABitcoin (float precioInicial, float * pPrecioConvertido, float valorBitcoin, char * mensajeError);
+
+/// @brief
+///
+/// @param primerNumero
+/// @param segundoNumero
+/// @param pResultado
+/// @return
+int sumarNumeros (float primerNumero, float segundoNumero, float * pResultado);
+
+/// @brief
+///
+/// @param primerNumero
+/// @param segundoNumero
+/// @param pResultado
+/// @return
+int restarNumeros (float primerNumero, float segundoNumero, float * pResultado);
+
+#endif /* BIBLIOTECA_H_ */
