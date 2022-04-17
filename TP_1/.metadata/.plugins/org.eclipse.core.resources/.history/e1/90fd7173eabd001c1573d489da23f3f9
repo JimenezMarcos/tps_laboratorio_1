@@ -39,6 +39,7 @@ La diferencia de precio es : r “
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include "biblioteca.h"
 
 #define TRUE 0
@@ -54,6 +55,7 @@ int main(void) {
 	int estadoOpcionUno;
 	int estadoOpcionDos;
 	int estadoOpcionTres;
+	int estadoOpcionCinco;
 	int opcion;
 	char respuesta;
 	float precioDebitoLatam;
@@ -71,6 +73,7 @@ int main(void) {
 	estadoOpcionUno = FALSE;
 	estadoOpcionDos = FALSE;
 	estadoOpcionTres = FALSE;
+	estadoOpcionCinco = FALSE;
 
 	do
 	{
@@ -158,7 +161,7 @@ int main(void) {
 
 				if(estadoOpcionUno == FALSE)
 				{
-					if(getFloat(&kilometrosIngresados, "Ingrese los kilometros: ", "No es una opcion valida.", 10000, 0, 2))
+					if(getFloat(&kilometrosIngresados, "Ingrese los kilometros: ", "No es una opcion valida.", 100000, 1, 2))
 					{
 						printf("Ya utilizo todos sus intentos, volviendo al menu.\n");
 						system("pause");
@@ -181,6 +184,7 @@ int main(void) {
 					{
 						printf("Vuelva a ingresar para cargar los datos nuevamente.\n");
 						estadoOpcionUno = FALSE;
+						system("pause");
 					}
 					else
 					{
@@ -195,12 +199,12 @@ int main(void) {
 
 				if(estadoOpcionDos == FALSE)
 				{
-					if(getFloat(&precioAerolineas, "Ingrese precio del vuelo de Aerolineas: ", "No es una opcion valida.", 1000000, 0, 2))
+					if(getFloat(&precioAerolineas, "Ingrese precio del vuelo de Aerolineas: ", "No es una opcion valida.", 10000000, 0, 2))
 					{
 						printf("Ya utilizo todos sus intentos, volviendo al menu.\n");
 						system("pause");
 					}
-					else if(getFloat(&precioLatam, "Ingrese precio del vuelo de Latam: ", "No es una opcion valida.", 1000000, 0, 2))
+					else if(getFloat(&precioLatam, "Ingrese precio del vuelo de Latam: ", "No es una opcion valida.", 10000000, 0, 2))
 					{
 						printf("Ya utilizo todos sus intentos, volviendo al menu.\n");
 						system("pause");
@@ -234,14 +238,9 @@ int main(void) {
 
 			break;
 			case 3:
-					if(estadoOpcionUno == TRUE)
+					if(estadoOpcionUno == FALSE && estadoOpcionDos == FALSE && estadoOpcionCinco == FALSE)
 					{
-						printf("Para calcular los costos debe ingresar los kilometros.\n");
-						system("pause");
-					}
-					else if(estadoOpcionDos == TRUE)
-					{
-						printf("Para calcular los costos debe ingresar los precios de los vuelos.\n");
+						printf("Para calcular los costos debe ingresar los datos.\n");
 						system("pause");
 					}
 					else
@@ -253,12 +252,17 @@ int main(void) {
 						CalcularInteres(precioLatam, &precioCreditoLatam, 25, "Ha ocurrido un error calculando el pago con tarjeta de credito de Latam.\n");
 
 						ConvertirABitcoin(precioAerolineas, &precioBitcoinAerolineas, 4612125.46, "Ha ocurrido un error convirtiendo el importe de Aerolineas a bitcoin");
-						ConvertirABitcoin(precioLatam, &precioBitcoinAerolineas, 4612125.46, "Ha ocurrido un error convirtiendo el importe de Latam a bitcoin");
+						ConvertirABitcoin(precioLatam, &precioBitcoinLatam, 4612125.46, "Ha ocurrido un error convirtiendo el importe de Latam a bitcoin");
 
 						dividirFlotantes(precioAerolineas, kilometrosIngresados, &precioUnitarioAerolineas);
 						dividirFlotantes(precioLatam, kilometrosIngresados, &precioUnitarioLatam);
 
 						restarNumeros(precioLatam, precioAerolineas, &diferenciaPrecio);
+
+						printf("Los costos fueron calculados con exito.\n");
+						estadoOpcionTres = TRUE;
+						system("pause");
+
 
 					}
 
@@ -266,26 +270,82 @@ int main(void) {
 					//Calcular descuento/ calcular interes/ convertir a bitcoin/ calcular precio por km/ Mostrar dif precio Latam - aerolineas
 			break;
 			case 4:
-				if(estadoOpcionUno == TRUE)
+				if(estadoOpcionUno == FALSE && estadoOpcionDos == FALSE && estadoOpcionCinco == FALSE)
 				{
-					printf("Para calcular los costos debe ingresar los kilometros.\n");
+					printf("Para informar los costos debe ingresar los datos.\n");
 					system("pause");
 				}
-				else if(estadoOpcionDos == TRUE)
+				else if(estadoOpcionTres == FALSE)
 				{
-					printf("Para calcular los costos debe ingresar los precios de los vuelos.\n");
+					printf("No se pueden mostrar resultados que no fueron calculados.\n");
 					system("pause");
 				}
-				else if(estadoOpcionTres == TRUE)
+				else
 				{
+					printf("Latam:\n");
+					printf("A) Precio con tarjeta de debito: $%.2f.\n", precioDebitoLatam);
+					printf("B) Precio con tarjeta de credito: $%.2f.\n", precioCreditoLatam);
+					printf("C) Precio pagando con bitcon: BTC %.4f\n", precioBitcoinLatam);
+					printf("D) Precio unitario: $%.2f\n\n", precioUnitarioLatam);
+					printf("Aerolineas:\n");
+					printf("A) Precio con tarjeta de debito: $%.2f.\n", precioDebitoAerolineas);
+					printf("B) Precio con tarjeta de credito: $%.2f.\n", precioCreditoAerolineas);
+					printf("C) Precio pagando con bitcon: BTC %.4f\n", precioBitcoinAerolineas);
+					printf("D) Precio unitario: $%.2f\n\n", precioUnitarioAerolineas);
+					printf("La diferencia de precio es: $%.2f\n", diferenciaPrecio);
 
+					system("pause");
 				}
 
-					//Mostrar todo
+
 			break;
 			case 5:
+				if(getChar(&respuesta, "Esta seguro que desea realizar una carga forzada de datos?(s/n): ", "No es una opcion valida. ", 'z', 'a', 3))
+				{
+					printf("Ya utilizo todos sus intentos, volviendo al menu.\n");
+					system("pause");
+				}
+				else if(respuesta == 's')
+				{
+					kilometrosIngresados = 7090;
+					precioAerolineas = 162965;
+					precioLatam = 159339;
 
-					//Carga forzada con KM: 7090 / Aerolineas argentinas: $162965 / Latam : 159339
+					CalcularDescuento(precioAerolineas, &precioDebitoAerolineas, 10, "Ha ocurrido un error calculando el descuento del pago con tarjeta de debito de Aerolineas.\n");
+					CalcularDescuento(precioLatam, &precioDebitoLatam, 10, "Ha ocurrido un error calculando el descuento del pago con tarjeta de debito de Latam.\n");
+
+					CalcularInteres(precioAerolineas, &precioCreditoAerolineas, 25, "Ha ocurrido un error calculando el pago con tarjeta de credito de Aerolineas.\n");
+					CalcularInteres(precioLatam, &precioCreditoLatam, 25, "Ha ocurrido un error calculando el pago con tarjeta de credito de Latam.\n");
+
+					ConvertirABitcoin(precioAerolineas, &precioBitcoinAerolineas, 4612125.46, "Ha ocurrido un error convirtiendo el importe de Aerolineas a bitcoin");
+					ConvertirABitcoin(precioLatam, &precioBitcoinLatam, 4612125.46, "Ha ocurrido un error convirtiendo el importe de Latam a bitcoin");
+
+					dividirFlotantes(precioAerolineas, kilometrosIngresados, &precioUnitarioAerolineas);
+					dividirFlotantes(precioLatam, kilometrosIngresados, &precioUnitarioLatam);
+
+					restarNumeros(precioLatam, precioAerolineas, &diferenciaPrecio);
+
+					printf("Precio Aerolineas:$%.2f\n", precioAerolineas);
+					printf("A) Precio con tarjeta de debito: $%.2f.\n", precioDebitoAerolineas);
+					printf("B) Precio con tarjeta de credito: $%.2f.\n", precioCreditoAerolineas);
+					printf("C) Precio pagando con bitcon: BTC %.4f\n", precioBitcoinAerolineas);
+					printf("D) Precio unitario: $%.2f\n\n", precioUnitarioAerolineas);
+					printf("La diferencia de precio es: $%.2f\n", diferenciaPrecio);
+					printf("Precio Latam:\n");
+					printf("A) Precio con tarjeta de debito: $%.2f.\n", precioDebitoLatam);
+					printf("B) Precio con tarjeta de credito: $%.2f.\n", precioCreditoLatam);
+					printf("C) Precio pagando con bitcon: BTC %.4f\n", precioBitcoinLatam);
+					printf("D) Precio unitario: $%.2f\n\n", precioUnitarioLatam);
+
+
+					system("pause");
+					estadoOpcionCinco = TRUE;
+				}
+				else
+				{
+					break;
+				}
+
 			break;
 			case 6:
 			break;

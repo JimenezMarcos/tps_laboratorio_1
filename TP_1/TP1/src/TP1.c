@@ -282,16 +282,18 @@ int main(void) {
 				}
 				else
 				{
-					printf("Latam:\n");
-					printf("A) Precio con tarjeta de debito: $%.2f.\n", precioDebitoLatam);
-					printf("B) Precio con tarjeta de credito: $%.2f.\n", precioCreditoLatam);
-					printf("C) Precio pagando con bitcon: BTC %.4f\n", precioBitcoinLatam);
-					printf("D) Precio unitario: $%.2f\n\n", precioUnitarioLatam);
-					printf("Aerolineas:\n");
+					printf("KMs Ingresados: $%.2f.\n\n", kilometrosIngresados);
+					printf("Precio Aerolineas:$%.2f.\n", precioAerolineas);
 					printf("A) Precio con tarjeta de debito: $%.2f.\n", precioDebitoAerolineas);
 					printf("B) Precio con tarjeta de credito: $%.2f.\n", precioCreditoAerolineas);
 					printf("C) Precio pagando con bitcon: BTC %.4f\n", precioBitcoinAerolineas);
 					printf("D) Precio unitario: $%.2f\n\n", precioUnitarioAerolineas);
+
+					printf("Precio Latam: $%.2f.\n", precioLatam);
+					printf("A) Precio con tarjeta de debito: $%.2f.\n", precioDebitoLatam);
+					printf("B) Precio con tarjeta de credito: $%.2f.\n", precioCreditoLatam);
+					printf("C) Precio pagando con bitcon: BTC %.4f\n", precioBitcoinLatam);
+					printf("D) Precio unitario: $%.2f\n\n", precioUnitarioLatam);
 					printf("La diferencia de precio es: $%.2f\n", diferenciaPrecio);
 
 					system("pause");
@@ -311,7 +313,34 @@ int main(void) {
 					precioAerolineas = 162965;
 					precioLatam = 159339;
 
-					printf("Carga de datos realizada con exito.\n");
+					CalcularDescuento(precioAerolineas, &precioDebitoAerolineas, 10, "Ha ocurrido un error calculando el descuento del pago con tarjeta de debito de Aerolineas.\n");
+					CalcularDescuento(precioLatam, &precioDebitoLatam, 10, "Ha ocurrido un error calculando el descuento del pago con tarjeta de debito de Latam.\n");
+
+					CalcularInteres(precioAerolineas, &precioCreditoAerolineas, 25, "Ha ocurrido un error calculando el pago con tarjeta de credito de Aerolineas.\n");
+					CalcularInteres(precioLatam, &precioCreditoLatam, 25, "Ha ocurrido un error calculando el pago con tarjeta de credito de Latam.\n");
+
+					ConvertirABitcoin(precioAerolineas, &precioBitcoinAerolineas, 4612125.46, "Ha ocurrido un error convirtiendo el importe de Aerolineas a bitcoin");
+					ConvertirABitcoin(precioLatam, &precioBitcoinLatam, 4612125.46, "Ha ocurrido un error convirtiendo el importe de Latam a bitcoin");
+
+					dividirFlotantes(precioAerolineas, kilometrosIngresados, &precioUnitarioAerolineas);
+					dividirFlotantes(precioLatam, kilometrosIngresados, &precioUnitarioLatam);
+
+					restarNumeros(precioLatam, precioAerolineas, &diferenciaPrecio);
+
+					printf("KMs Ingresados: $%.2f.\n\n", kilometrosIngresados);
+					printf("Precio Aerolineas:$%.2f.\n", precioAerolineas);
+					printf("A) Precio con tarjeta de debito: $%.2f.\n", precioDebitoAerolineas);
+					printf("B) Precio con tarjeta de credito: $%.2f.\n", precioCreditoAerolineas);
+					printf("C) Precio pagando con bitcon: BTC %.4f\n", precioBitcoinAerolineas);
+					printf("D) Precio unitario: $%.2f\n\n", precioUnitarioAerolineas);
+					printf("La diferencia de precio es: $%.2f\n", diferenciaPrecio);
+					printf("Precio Latam: $%.2f.\n", precioLatam);
+					printf("A) Precio con tarjeta de debito: $%.2f.\n", precioDebitoLatam);
+					printf("B) Precio con tarjeta de credito: $%.2f.\n", precioCreditoLatam);
+					printf("C) Precio pagando con bitcon: BTC %.4f\n", precioBitcoinLatam);
+					printf("D) Precio unitario: $%.2f\n\n", precioUnitarioLatam);
+
+
 					system("pause");
 					estadoOpcionCinco = TRUE;
 				}
